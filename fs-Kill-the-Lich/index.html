@@ -10,26 +10,28 @@
     <div id="game-container">
         <div class="status player">
             <span>
-                <div class="stat">Name: </div>
-                <div class="stat">Gold: </div>
-                <div class="stat">Health: </div>
+                <div class="stat">Name: <span id="heroName">hero</span></div>
+                <div class="stat">Gold: <span id="goldText">20</span></div>
+                <div class="stat">Health: <span id="healthText">100</span></div>
             </span>
             <span>
-                <div class="stat">XP: </div>
-                <div class="stat">Weapon: A grand Weapon</div>
+                <div class="stat">XP: <span id="xpText">0</span></div>
+                <div class="stat">Weapon: <span id="currentWeapon">stick</span></div>
             </span>
         </div>
         <div class="controls">
-            <button class="btnStyle">Opção 1</button>
-            <button class="btnStyle">Opção 2</button>
-            <button class="btnStyle">Opção 3</button>
+            <button class="btnStyle" id="button1"><span id="btn1Text">Go Store</span></button>
+            <button class="btnStyle" id="button2"><span id="btn2Text">Fight Monster</span></button>
+            <button class="btnStyle" id="button3"><span id="btn3Text">Fight Lich</span></button>
         </div>
         <div class="status monster">
-            <div class="stat">Monster: </div>
-            <div class="stat">Lvl: </div>
-            <div class="stat">Health: </div>
+            <div class="stat">Monster: <span id="monsterName">Zombie</span></div>
+            <div class="stat">Lvl: <span id="monsterLvl">2</span></div>
+            <div class="stat">Health: <span id="monsterHealthText">20</span>
+                
+            </div>
         </div>
-        <div class="text"><p>Texto de introdução</p></div>
+            <div class="text"><p id="screenText">In a realm shrouded in the shadows of darkness, a Lich, an immortal lord who wields the power of the dead, spreads its malevolent dominion over lands that were once prosperous. Villages tremble, and forests sigh under the weight of its nefarious presence. Only a hero born from the fire of determination and forged in the crucible of adversity can defeat it.</p></div>
     </div>
     <script src="./script.js"></script>
 </body>
