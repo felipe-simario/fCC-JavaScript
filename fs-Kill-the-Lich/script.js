@@ -30,6 +30,37 @@ const screenText = document.getElementById("screenText");
 
  // ----------- GAME -----------
 
+
+// Screens upadtes
+
+const screens = [
+    {
+        "functionName": goStore,
+        "button text": ["Buy", "Sell", "GoTown"],
+        "button function": [goBuy, goSell, goTown],
+        text: "You see a Store, need buy or sell?"
+    },
+    {
+        "functionName": goBuy,
+        "button text": ["Buy Health", "Buy next weapon " + '"' + weapons[1] + '".', "GoTown"],
+        "button function": [buyHealth, buyWeapon, goTown],
+        text: "You are buying."
+    },
+    {
+        "functionName": goSell,
+        "button text": ["Sell your weapon " + '"' + inventory[inventory.length-1] + '".', "Sell all weapons (not equipped)" + '"' + weapons[1] + '".', "GoTown"],
+        "button function": [sellWeapon, sellAllWeapon, goTown],
+        text: "You are selling."
+    },
+    {
+        "functionName": goTown,
+        "button text": ["Go Store", "Fight Monster", "Fight Lich"],
+        "button function": [goStore, fightMonster, goTown],
+        text: "You are in Square Town"
+    }
+];
+
+
 //Question to name hero
 window.onload = function(){
     startGame();
@@ -42,28 +73,58 @@ function startGame(){
     } else {
         heroName.innerText = "Hero"
     }
-    
+
+    button1.onclick = goStore;
+    button2.onclick = fightMonster;
+    button3.onclick = fightLich;
 }
 
-button1.onclick = function() {
-    goStore();
+function updateScreen(screen) {
+    btn1.innerText = screen["button text"][0];
+    btn2.innerText = screen["button text"][1];
+    btn3.innerText = screen["button text"][2];
+    screenText.innerText = screen.text;
+    button1.onclick = screen["button function"][0];
+    button2.onclick = screen["button function"][1];
+    button3.onclick = screen["button function"][2];
 }
 
 function goStore(){
-    btn1.innerText = "Buy";
-    btn2.innerText = "Sell";
-    btn3.innerText = "GoTown";
-    screenText.innerText = "You stay in Store, what you need?";
-
-    button1.onclick = function() {
-        goBuy();
-    }
+    updateScreen(screens[0])
 }
 
-function goBuy() {
-    btn1.innerText = "Buy Health";
-    btn2.innerText = "Buy next weapon " + '"' + weapons[1] + '".';
-    btn3.innerText = "GoTown";
-    screenText.innerText = "You are buying.";
-    screenText.innerText += "Itens in your inventory = " + inventory;
+function goBuy(){
+    updateScreen(screens[1])
 }
+
+function goSell(){
+    updateScreen(screens[2])
+}
+
+function goTown(){
+    updateScreen(screens[3])
+}
+
+function buyHealth(){
+    //vazia
+}
+
+function buyWeapon(){
+    //vazia
+}
+
+function sellWeapon(){
+    //vazia
+}
+
+function sellAllWeapon(){
+    //vazia
+}
+
+function fightMonster(){
+    //vazia
+}
+
+
+
+
