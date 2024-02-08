@@ -59,6 +59,7 @@ body {
     width: 27%;
     color: #fff;
     border: none;
+    height: 60px;
 }
 
 .btnStyle:hover{

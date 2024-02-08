@@ -2,7 +2,7 @@
 
 //Infos Hero
 const heroName = document.getElementById("heroName");
-let gold = 20;
+let gold = 250;
 const goldText = document.getElementById("goldText");
 let health = 100;
 const healthText = document.getElementById("healthText");
@@ -10,8 +10,8 @@ let xp = 0;
 const xpText = document.getElementById("xpText");
 const currentWeaponText = document.getElementById("currentWeaponText");
 const weapons = ["Stick", "Hammer", "Axe", "Sword", "HighSword"];
-let currentWeapon = weapons[0];
-const inventory = [currentWeapon];
+let currentWeapon = 0;
+const inventory = [weapons[0]];
 
 //Infos Monster
 const monsters = ["DarkSlime", "Skeleton", "Zombie", "DarkOgre", "DarkElf", "DarkHighElf", "Lich"];
@@ -42,13 +42,13 @@ const screens = [
     },
     {
         "functionName": goBuy,
-        "button text": ["Buy Health", "Buy next weapon " + '"' + weapons[1] + '".', "GoTown"],
+        "button text": ["Buy 20 health for 20g", "Buy next weapon for 50g.", "GoTown"],
         "button function": [buyHealth, buyWeapon, goTown],
         text: "You are buying."
     },
     {
         "functionName": goSell,
-        "button text": ["Sell your weapon " + '"' + inventory[inventory.length-1] + '".', "Sell all weapons (not equipped)" + '"' + weapons[1] + '".', "GoTown"],
+        "button text": ["Sell your last weapon ", "Sell all weapons (not equipped)", "GoTown"],
         "button function": [sellWeapon, sellAllWeapon, goTown],
         text: "You are selling."
     },
@@ -79,6 +79,8 @@ function startGame(){
     button3.onclick = fightLich;
 }
 
+//function to match array content the screen update
+
 function updateScreen(screen) {
     btn1.innerText = screen["button text"][0];
     btn2.innerText = screen["button text"][1];
@@ -89,16 +91,22 @@ function updateScreen(screen) {
     button3.onclick = screen["button function"][2];
 }
 
+// __ -- __ STORE FUNCTIONS __ -- __
+
 function goStore(){
-    updateScreen(screens[0])
+    updateScreen(screens[0]);
 }
 
 function goBuy(){
-    updateScreen(screens[1])
+    updateScreen(screens[1]);
+
 }
 
 function goSell(){
-    updateScreen(screens[2])
+    updateScreen(screens[2]);
+    screenText.innerText += "This is your inventory: \n";
+    screenText.innerText += inventory;
+
 }
 
 function goTown(){
@@ -106,11 +114,39 @@ function goTown(){
 }
 
 function buyHealth(){
-    //vazia
+    if(gold < 20) {
+        screenText.innerText = "You don't have gold enougth."
+    } else {
+        health += 20;
+        healthText.innerText = health;
+        gold -= 20;
+        goldText.innerText = gold;
+        screenText.innerText += "You buy 20 health."
+    }
 }
 
 function buyWeapon(){
-    //vazia
+    if(gold >= 50){
+        if(currentWeapon == weapons.length-1){
+            screenText.innerText = "You alread have the strong weapon.";
+            btn2.innerText = "Don`t have more strong weapon.";
+        } else {
+            currentWeapon++;
+            currentWeaponText.innerText = weapons[currentWeapon];
+            screenText.innerText = "You buy the next strong weapon, your attack increases!";
+            inventory.push(weapons[currentWeapon])
+            gold -= 50;
+            goldText.innerText = gold;
+            btn2.innerText = `Buy next weapon for 50g.`;
+            if(currentWeapon >= weapons.length-1){
+                btn2.innerText = "Don`t have more strong weapon.";
+            } else {
+                btn2.innerText = `Buy next weapon for 50g.`;
+            }
+        }
+    } else {
+        screenText.innerText = "You don't have enough gold.";
+    }
 }
 
 function sellWeapon(){
