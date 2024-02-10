@@ -150,11 +150,27 @@ function buyWeapon(){
 }
 
 function sellWeapon(){
-    //vazia
+    if(inventory.length == 1){
+        screenText.innerText = "You can't sell your only weapon!"
+    } else {
+        inventory.splice(-2, 1);
+        screenText.innerText = "You sell a weapon and received 30 gold."
+        gold += 30;
+        goldText.innerText = gold;
+        screenText.innerText += "\n You inventory contain:" + inventory;
+    }
 }
 
 function sellAllWeapon(){
-    //vazia
+    if(inventory.length == 1){
+        screenText.innerText = "You can't sell your only weapon!"
+    } else {
+        gold += (inventory.length-1) * 30;
+        goldText.innerText = gold;
+        inventory.splice(0, inventory.length - 1);
+        screenText.innerText = "You sell all weapon in your inventory and receive 30 gold for each."    
+        screenText.innerText += "\n You inventory contain:" + inventory;
+    }
 }
 
 function fightMonster(){
