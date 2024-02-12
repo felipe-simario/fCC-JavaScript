@@ -48,7 +48,7 @@ const monsters = [
                     {
                         "monster name": "Lich",
                         "monster lvl": 20,
-                        "monster health": 1
+                        "monster health": 1500
                     }
                  ]
 const monsterName = document.getElementById("monsterName");
@@ -94,7 +94,7 @@ const screens = [
     {
         "functionName": goTown,
         "button text": ["Go Store", "Fight Monster", "Fight Lich"],
-        "button function": [goStore, fightMonster, goTown],
+        "button function": [goStore, fightMonster, fightLich],
         text: "You are in Square Town"
     },
     {
@@ -172,7 +172,7 @@ function buyHealth(){
         healthText.innerText = health;
         gold -= 20;
         goldText.innerText = gold;
-        screenText.innerText += "You buy 20 health."
+        screenText.innerText = "You buy 20 health."
     }
 }
 
@@ -321,8 +321,15 @@ function restart(){
     goldText.innerText = gold;
     currentWeaponText.innerText = weapons[currentWeapon];
     healthText.innerText = health;
+    statMonster.style.display = "none";
+
+    startGame();
+
+    updateScreen(screens[3]);
+    screenText.innerText = "In a realm shrouded in the shadows of darkness, a Lich, an immortal lord who wields the power of the dead, spreads its malevolent dominion over lands that were once prosperous. Villages tremble, and forests sigh under the weight of its nefarious presence. Only a hero born from the fire of determination and forged in the crucible of adversity can defeat it."
 
     
+
 }
 
 function monsterUpdate(monster){
