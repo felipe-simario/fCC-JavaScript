@@ -79,6 +79,14 @@ body {
 
     .btnStyle{
         font-size: 14px;
+        max-height: 39px;
     }
 
+    .text {
+        overflow: auto;
+    }
+
+    .player, .monster{
+        padding: 10px;
+    }
 }
